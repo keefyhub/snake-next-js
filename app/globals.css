@@ -25,6 +25,11 @@ body {
   background: #60cbff;
 }
 
+.snake-head {
+  position: relative;
+  z-index: 10;
+}
+
 /* This sucks tailwind cant compile function based classes - find a better way */
 .col-start-0 {
   grid-column-start: 0;

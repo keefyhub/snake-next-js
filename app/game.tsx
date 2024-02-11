@@ -94,17 +94,15 @@ export function Game() {
       <div className="grid grid-cols-game-layout grid-rows-game-layout h-full" ref={playBoard}>
         <div className={`food col-start-${foodPosition.x} row-start-${foodPosition.y}`}></div>
         {snake.map((item: any, index: number) => (
-          <SnakeBody key={index} props={item} />
+          <SnakeBody key={index} props={{ item: item, key: index }} />
         ))}
       </div>
     )
   }
 
-  const SnakeBody = (snakeBody: any, index: number) => {
+  const SnakeBody = ({ props }: any) => {
     return (
-      <>
-        <div key={index} className={`snake-body col-start-${snakeBody.props.x} row-start-${snakeBody.props.y}`}></div>
-      </>
+      <div className={`${props.key === 0 ? 'snake-head' : ''} snake-body col-start-${props.item.x} row-start-${props.item.y}`}></div>
     );
   }
 
@@ -196,11 +194,11 @@ export function Game() {
       <div className="bg-midnight-express flex justify-between p-4">
         <div className="">
           <select
-            className="bg-midnight-express"
+            className="bg-midnight-express rounded-none"
             onChange={e => setDifficulty(Number(e.target.value))}
           >
             <option value={500}>Easy</option>
-            <option value={250} selected>Normal</option>
+            <option value={250} defaultValue="true">Normal</option>
             <option value={120}>Hard</option>
           </select>
         </div>
